@@ -23,4 +23,75 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+body {
+    padding: 0;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    background-color: #EAECF2;
+    transition: 0.5s ease all
+}
+
+button.primary {
+    border-radius: 12px;
+    color: #EAECF2;
+    width: 150px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    transition: 0.5s ease all;
+    height: 40px;
+    background-color: #2F68B5;
+    border: none;
+}
+
+button.primary:hover {
+    box-shadow: 0px 4px 30px rgba(47, 104, 181, 0.3)
+}
+
+button.success {
+    border: none;
+    width: 150px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    transition: 0.5s ease all;
+    height: 40px;
+    border-radius: 12px;
+    color: #EAECF2;
+    background-color: #00DB8C;
+}
+
+button.success:hover {
+    box-shadow: 0px 4px 30px rgba(0, 219, 140, 0.3)
+}
+a{
+  text-decoration: none;
+  color:inherit
+}
+
+.primary-bg {
+    background-color: #2F68B5 !important;
+    color: #FFFFFF !important;
+    transition: 0.5s ease all
+}
+
+.card-style {
+    background-color: #FFFFFF !important;
+    border-radius: 12px;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+    transition: 0.5s ease all
+}
+
+.card-style:hover {
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.20);
+    transition: 0.5s ease all
+}
+
+.card-holder {
+    margin: 15px;
+    display: flex
+}
 </style>

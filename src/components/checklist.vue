@@ -1,5 +1,5 @@
 <template>
-    <div :class="this.active ? 'checklist-opened' : 'checklist-closed'">
+    <div :class="this.active ? 'checklist-opened card-style' : 'checklist-closed card-style'" @click="activateChecklist">
         <h2>
             {{ title }}
         </h2>
@@ -46,23 +46,28 @@ export default {
 
 <style>
 .checklist-closed {
-    width: 80%;
+    width: 80vh;
+    /* background-color: */
     height: 6vh;
-    cursor: pointer
+    cursor: pointer;
+    transition: 0.3s ease all
 }
 
 .checklist-opened {
-    width: 80%;
+    width: 80vh;
     height: fit-content;
-    cursor: pointer
+    cursor: pointer;
+    transition: 0.3s ease all
 }
 
 .cases-hidden {
     opacity: 0;
+    transition: 0.3s ease all;
 }
 
 .cases-shown {
     opacity: 1;
-    margin-left: 75px
+    margin-left: 75px;
+    transition: 0.3s ease all
 }
 </style>

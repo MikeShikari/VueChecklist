@@ -1,9 +1,12 @@
 <template>
     <div>
         <navBar />
-        <div v-for="item of this.checklists" :key="item.title">
+        <div class="checklist-holder" >
+             <div v-for="item of this.checklists" :key="item.title" >
             <checklist :title="item.title" :cases="item.cases" :priority="item.priority" />
         </div>
+        </div>
+       
     </div>
 </template>
 
@@ -11,7 +14,7 @@
 import navBar from '@/components/navBar.vue';
 import checklist from '@/components/checklist.vue';
 export default {
-    name: 'checklist',
+    name: 'checklistPage',
     components: { navBar, checklist },
     data() {
         return {
@@ -20,11 +23,11 @@ export default {
                     title: 'Mouse1',
                     cases: [
                         {
-                            titleC: 'moose1',
+                            title: 'moose1',
                             description: 'moose moose moose is not elk elk elk'
                         },
                         {
-                            titleC: 'moose2',
+                            title: 'moose2',
                             description: 'mambo jambo'
                         },
                     ],
@@ -34,11 +37,11 @@ export default {
                     title: 'Mouse2',
                     cases: [
                         {
-                            titleC: 'elk',
+                            title: 'elk',
                             description: 'blablablalbablablablalbablablablalbablablablalbablablablalbablablablalbablablablalba'
                         },
                         {
-                            titleC: 'elkus',
+                            title: 'elkus',
                             description: ''
                         },
                     ],
@@ -52,4 +55,12 @@ export default {
 
 </script>
 
-<style></style>
+<style>
+.checklist-holder{
+    /* margin:auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0px
+}
+</style>

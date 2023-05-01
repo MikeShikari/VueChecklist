@@ -1,7 +1,9 @@
 <template>
     <div class="nav-bar primary-bg">
         <font-awesome-icon class="menu-icon" icon="fa-solid fa-bars fa-lg" />
-        <div class="compose-logo">
+        <router-link to="/" class="compose-logo">
+
+            <!-- <div class="compose-logo"> -->
             <h1>
                 Goulash
             </h1>
@@ -11,7 +13,9 @@
             <h1>
                 check
             </h1>
-        </div>
+        <!-- </div> -->
+        </router-link>
+        
 
     </div>
 </template>
