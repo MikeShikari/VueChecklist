@@ -35,7 +35,7 @@ body {
 button.primary {
     border-radius: 12px;
     color: #EAECF2;
-    width: 150px;
+    width: 10vh;
     cursor: pointer;
     margin-top: 10px;
     margin-bottom: 10px;
