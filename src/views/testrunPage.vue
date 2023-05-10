@@ -1,44 +1,27 @@
 <template>
     <div>
-        <navBar />
-        <button class="save-changes primary">Save changes</button>
-        <div class="checklist-holder" >
-             <div v-for="(item, index) in this.checklists" :key="item.title" >
-            <checklist :title="item.title" @delChecklist="deleteChecklist(index)" @updateCases="updateCases(index, $event)" :cases="item.cases" :priority="item.priority" />
+        <navBar/>
+        <div class="checklist-holder">
+            <div class="row">
+                <div>
+                    <h3>Введите название ветки / конкретного тестирования:</h3>
+            <input type="text"> 
+                </div>
+               
+            </div>
+            
         </div>
-        <button class="primary" @click="newChecklist">New checklist</button>
-        </div>
-       
     </div>
 </template>
 
 <script>
-import navBar from '@/components/navBar.vue';
-import checklist from '@/components/checklist.vue';
+import navBar from '../components/navBar.vue'
+
 export default {
-    name: 'checklistPage',
-    components: { navBar, checklist },
-    methods:{
-        updateCases(index, newValue){
-            this.checklists[index] = newValue;
-        },
-        deleteChecklist(index){
-            this.checklists.splice(index, 1)
-        },
-        newChecklist(){
-            this.checklists.push({
-                title:'Default',
-                cases:[]
-            })
-        }
-    },
-    props:{
-        checklistsProps:{
-            type: Object
-        }
-    },
-    data() {
-        return {
+    name: 'testrunPage',
+    components:{navBar},
+    data(){
+        return{
             checklists: [
                 {
                     title: 'Mouse1',
@@ -75,18 +58,15 @@ export default {
             ]
         }
     }
-
 }
-
 </script>
 
-<style>
-.save-changes{
-    position: fixed;
-    right: 10vh;
-    top: 7vh
+<style scoped>
+.row{
+    display: flex;
+    flex-direction: row;
 }
-.checklist-holder{
+    .checklist-holder{
     /* margin:auto; */
     display: flex;
     margin-top: 5vh;

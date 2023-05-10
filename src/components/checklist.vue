@@ -1,9 +1,14 @@
 <template>
     <div :class="this.active ? 'checklist-opened card-style' : 'checklist-closed card-style'" @click="activateChecklist">
-        <input type="text" @click.prevent.stop="" :value="title" :disabled="this.active ? false : true">
+    <div class="row">
+        <input type="text" @click.prevent.stop="" v-model="titleData" :disabled="this.active ? false : true">
+        <font-awesome-icon @click.prevent.stop="checklistDel" class="delete-icon" icon="fa-solid fa-trash-can" />
+
+    </div>
         <div :class="this.active ? 'cases-shown' : 'cases-hidden'">
-            <div v-for="item of this.casesData" :key="item.title" class="case">
-                <testCase :title="item.title" :description="item.description" />
+            <div v-for="(item,index) in this.casesData" :key="item.title" class="case">
+                
+                <testCase :title="item.title" :index="index" @del="firstDel(index)" @updateTitle="updateTitle(index, $event)" @updatePriority="updatePriority(index, $event)" @updateDescription="updateDescription(index, $event)" :priority="item.priority" :description="item.description" />
             </div>
             <button class="primary btn" @click.prevent.stop="addCase"> New case</button>
         </div>
@@ -28,17 +33,42 @@ export default {
     data(props) {
         return {
             active: false,
+            titleData:props.title,
             casesData: props.cases
         }
     },
+    watch:{
+        casesData:function(){
+            this.updateCases()
+        }
+    },
     methods: {
+        updateCases(){
+            this.$emit('updateCases', this.casesData)
+        },
+        updatePriority(index, newValue){
+            this.casesData[index].priority = newValue
+        },
+        updateTitle(index, newValue ){
+            this.casesData[index].title =newValue
+        },
+        updateDescription(index, newValue){
+            this.casesData[index].description =newValue
+        },
+        checklistDel(){
+            this.$emit('delChecklist')
+        },
+        firstDel( index){
+            this.casesData.splice(index, 1)
+        },
         activateChecklist() {
             this.active = !this.active
         },
         addCase(){
             this.casesData.push({
                 title: 'Default',
-                description: 'Default'
+                description: 'Default',
+                priority:'Normal'
             })
         }
     }
@@ -48,7 +78,23 @@ export default {
 </script>
 
 <style scoped>
+.row{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+.delete-icon{
+    height: 2vh;
+    width:2vh;
+    transition:0.3s ease all
+}
+.delete-icon:hover{
+    color:#F0202D;
+    transition:0.3s ease all
+}
 .btn{
+    margin-top: 4vh;
     height: 3vh;
 }
 input{
@@ -59,7 +105,7 @@ input{
     margin-top: 1.5vh;
     margin-bottom: 1.5vh;
     resize: none;
-    font-size: 1.9em;
+    font-size: 1.7em;
     font-weight: bold;
 
     

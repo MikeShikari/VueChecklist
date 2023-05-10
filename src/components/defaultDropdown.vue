@@ -41,6 +41,7 @@ export default {
         }
     },
     methods: {
+        
         toggle(){
             this.active = !this.active
         },
@@ -78,7 +79,7 @@ export default {
 .morg{
     position: absolute;
     right: 50%;
-    top: 1.5vh
+    top: 7vh
 }
 .container{
     display: flex;
@@ -88,7 +89,7 @@ export default {
     width: 10vh;
     border-radius: 12px;
     z-index: 1000000;
-    top: -2.5vh;
+    top: 3vh;
     
    
     background-color: #EAECF2;
@@ -138,7 +139,7 @@ div.solo-element.priority-highest{
 }
 .btn{
     position: absolute;
-    top: 0;
+    top: 5.5vh;
     right: 15%;
     height:3vh
 }

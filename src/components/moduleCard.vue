@@ -10,10 +10,13 @@
                     Edit module
                 </button>
             </router-link>
+            <router-link to="/testrun">
 
-            <button class="success">
+                <button class="success">
                 Run tests
             </button>
+            </router-link>
+            
         </div>
         <div class="percent">
             <p>

@@ -32,6 +32,9 @@ export default {
 .nav-bar {
     width: 100%;
     height: 6vh;
+    position: fixed;
+    z-index: 1000000000;
+    top:0;
     display: flex;
     align-items: start;
 }

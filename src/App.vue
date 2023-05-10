@@ -52,7 +52,7 @@ button.primary:hover {
 
 button.success {
     border: none;
-    width: 150px;
+    width: 10vh;
     cursor: pointer;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -92,6 +92,7 @@ a{
 
 .card-holder {
     margin: 15px;
+    margin-top: 8vh;
     display: flex
 }
 </style>

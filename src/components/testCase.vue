@@ -2,9 +2,13 @@
     <div>
 <div class="case-container">
         <div class="case-title-container">
-        <input type="text" :value="title" @click.prevent.stop="">
+            <div class="row">
+                <h2>{{index+1}}. </h2>
+                <input type="text" v-model="titleC" @change="changeTitle" @click.prevent.stop="">
+                <font-awesome-icon @click.prevent.stop="del" icon="fa-solid fa-xmark" class="delete-icon"/>
+            </div>
         <!-- <h2>{{ title }}</h2> -->
-        <b>Описание:</b> <textarea @click.prevent.stop="" type="text" :value="description"> </textarea> 
+        <b>Описание:</b> <textarea @click.prevent.stop="" @change="changeDescription" type="text" v-model="descriptionC"> </textarea> 
     </div>
     <div class="case-dropdown-container">
        <defaultDropdown @changePriority="changePriority"/>
@@ -26,21 +30,42 @@ export default {
         title: {
             type: String
         },
+        index:{
+            type:Number
+        },
         description: {
             type: String
         },
+        priority:{
+            type: String
+        }
         
     },
     methods:{
+        del(){
+          this.$emit('del')  
+        },
         changePriority(newValue){
             this.priorityC = newValue
+            this.$emit('updatePriority', this.priorityC)
+        },
+        changeTitle(){
+            this.$emit('updateTitle', this.titleC)
+        },
+        changeDescription(){
+            this.$emit('updateDescription', this.descriptionC)
         }
     },
-    data(){
+    data(props){
         return {
-            priorityC: 'Normal'
+            priorityC: props.priority,
+            titleC: props.title,
+            descriptionC: props.description
         }
-    }
+    },
+   
+       
+       
 
 }
 </script>
@@ -91,13 +116,31 @@ input:focus{
     display: flex;
     flex-direction: column;
     align-items: start;
-    width: 50%;
+    
 }
 .case-container{
     display: flex;
     flex-direction: row;
     align-content: space-between;
     width: 100%;
+}
+.delete-icon{
+    height: 2vh;
+    position: absolute;
+    right: -50vh;
+    width:2vh;
+    transition:0.3s ease all
+}
+.delete-icon:hover{
+    color:#F0202D;
+    transition:0.3s ease all
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    align-items: center;
+    width: 50%;
 }
 .case-dropdown-container{
     display: flex;
