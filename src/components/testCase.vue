@@ -11,7 +11,7 @@
         <b>Описание:</b> <textarea @click.prevent.stop="" @change="changeDescription" type="text" v-model="descriptionC"> </textarea> 
     </div>
     <div class="case-dropdown-container">
-       <defaultDropdown @changePriority="changePriority"/>
+       <defaultDropdown @changePriority="changePriority" :priorityProp="priorityC"/>
     </div>
 </div>
 <div class="border"></div>

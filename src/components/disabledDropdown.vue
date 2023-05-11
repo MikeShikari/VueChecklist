@@ -1,9 +1,5 @@
 <template>
-    <div class="dropdown-menu">
-        <span class="morg">
-           Приориет:  
-        </span>
-        
+    <div class="dropdown-menu">        
             <button @click.prevent.stop="disabledProp ? '' : this.toggle()" class="primary btn" :class="[prioclass, active? 'btn-change': '']">
             {{ priority }}
         </button>
@@ -91,9 +87,9 @@ export default {
 
 <style scoped>
 .morg{
-    position: absolute;
-    right: 50%;
-    top: 7vh
+    /* position: absolute; */
+    /* right: 50%; */
+    /* top: 7vh */
 }
 .container{
     display: flex;
@@ -148,13 +144,13 @@ div.solo-element.priority-highest{
 }
 
 .dropdown-menu{
-    position: relative;
+    /* position: relative; */
     width: 100%;
 }
 .btn{
-    position: absolute;
-    top: 5.5vh;
-    right: 15%;
+    /* position: absolute; */
+    /* top: 5.5vh; */
+    /* right: 15%; */
     height:3vh
 }
 .divider{

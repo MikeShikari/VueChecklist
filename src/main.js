@@ -11,10 +11,16 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faBomb } from '@fortawesome/free-solid-svg-icons'
 import VueApexCharts from "vue3-apexcharts";
 
 /* add icons to the library */
 library.add(faBars)
 library.add(faXmark)
+library.add(faCheck)
+library.add(faMinus)
+library.add(faBomb)
 library.add(faTrashCan)
 createApp(App).use(router).use(checkbox).component('font-awesome-icon', FontAwesomeIcon).use(VueApexCharts).mount('#app')

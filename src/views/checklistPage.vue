@@ -45,12 +45,12 @@ export default {
                     cases: [
                         {
                             title: 'moose1',
-                            priority:'Normal',
+                            priority:'High',
                             description: 'moose moose moose is not elk elk elk'
                         },
                         {
                             title: 'moose2',
-                            priority:'Normal',
+                            priority:'Highest',
                             description: 'mambo jambo'
                         },
                     ],
