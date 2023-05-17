@@ -2,8 +2,8 @@
     <div :class="this.active ? 'checklist-opened card-style' : 'checklist-closed card-style'" @click="activateChecklist">
     <div class="row">
         <input type="text" @click.prevent.stop="" v-model="titleData" :disabled="this.active ? false : true">
-        <font-awesome-icon @click.prevent.stop="checklistDel" class="delete-icon" icon="fa-solid fa-trash-can" />
-
+        <font-awesome-icon @click.prevent.stop="openModal" class="delete-icon" icon="fa-solid fa-trash-can" />
+        <confirmModal :class="this.showModal ? 'disp':'nodisp'" text1="Отмена" text2="Удалить" text0="Все тест-кейсы из чек-листа будут удалены без возможности восстановления" header="Удалить чек-лист?" :action1="closeModal" :action2="checklistDel"/>
     </div>
         <div :class="this.active ? 'cases-shown' : 'cases-hidden'">
             <div v-for="(item,index) in this.casesData" :key="item.title" class="case">
@@ -18,9 +18,10 @@
 
 <script>
 import testCase from './testCase.vue';
+import confirmModal from './confirmModal.vue';
 export default {
     name: 'checklist',
-    components: { testCase },
+    components: { testCase, confirmModal },
     props: {
         title: {
             type: String
@@ -32,6 +33,7 @@ export default {
     },
     data(props) {
         return {
+            showModal:false,
             active: false,
             titleData:props.title,
             casesData: props.cases
@@ -56,7 +58,15 @@ export default {
             this.casesData[index].description =newValue
         },
         checklistDel(){
+            
             this.$emit('delChecklist')
+            this.showModal = false
+        },
+        closeModal(){
+            this.showModal = false
+        },
+        openModal(){
+            this.showModal = true
         },
         firstDel( index){
             this.casesData.splice(index, 1)
@@ -83,6 +93,12 @@ export default {
     flex-direction: row;
     width: 100%;
     align-items: center;
+}
+.nodisp{
+    display: none;
+}
+.disp{
+    display: flex;
 }
 .delete-icon{
     height: 2vh;
@@ -122,7 +138,7 @@ input:focus{
 }
 .checklist-closed {
     width: 80vh;
-    opacity: 0.8;
+    opacity: 1;
     /* background-color: */
     height: 6vh;
     cursor: pointer;
@@ -142,7 +158,7 @@ input:focus{
 
 .checklist-opened {
     width: 80vh;
-    opacity: 0.8;
+    opacity: 1;
     height: fit-content;
     cursor: pointer;
     margin-top: 3vh;

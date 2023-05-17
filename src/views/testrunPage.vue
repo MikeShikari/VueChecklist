@@ -21,7 +21,14 @@
                 <testruns :checklists="checklists" />
 
                 
-               
+                <div>
+                    <button class="success bttn" @click="openModal"> Complete test run </button>
+                    <confirmModal :class="this.showModal ? 'disp':'nodisp'" text1="Сохранить" text2="Отмена" text0="Результаты будут сохранены и добавлены в статистику по тестированию" header="Завершить тестирование?" :action1="closeModal" :action2="closeModal"/>
+                    
+                    <button class="failure bttn" @click="openModal1"> Cancel test run </button>
+                    <confirmModal :class="this.showModal1 ? 'disp':'nodisp'" text1="Прервать" text2="Отмена" text0="Результаты не сохранятся, потребуется повторное тестирование" header="Прервать тестирование?" :action1="closeModal1" :action2="closeModal1"/>
+                </div>
+                
                
             
             
@@ -32,34 +39,29 @@
 <script>
 import checkBox from '../components/checkbox.vue'
 import testruns from '../components/testruns.vue'
+import confirmModal from '../components/confirmModal.vue';
 import navBar from '../components/navBar.vue'
 export default {
     name: 'testrunPage',
-    components:{navBar, checkBox, testruns},
+    components:{navBar, checkBox, testruns, confirmModal},
     methods:{
-        updateCheckBoxN: function( newValue){
-            this.checkedN = newValue
+        closeModal(){
+            this.showModal = false
         },
-        updateCheckBoxS: function( newValue){
-            this.checkedS = newValue
+        closeModal1(){
+            this.showModal1 = false
         },
-        updateCheckBoxNe: function( newValue){
-            this.checkedNe = newValue
+        openModal(){
+            this.showModal = true
         },
-        updateCheckBoxF: function( newValue){
-            this.checkedF = newValue
+        openModal1(){
+            this.showModal1 = true
         },
-        updateCheckBoxFl: function( newValue){
-            this.checkedFl = newValue
-        }
     },
     data(){
         return{
-            checkedN: false,
-            checkedS:false,
-            checkedF:false,
-            checkedFl:false,
-            checkedNe:false,
+            showModal:false,
+            showModal1:false,
             title: 'Default',
             description:'Default description',
             checklists: [
@@ -73,7 +75,7 @@ export default {
                         },
                         {
                             title: 'Подразделение действия акции',
-                            priority:'Normal',
+                            priority:'Low',
                             description: 'Выбрать определенное подразделение. Акция должна работать на выбранном подразделении и не работать на остальных.'
                         },
                     ],
@@ -84,12 +86,89 @@ export default {
                     cases: [
                         {
                             title: 'Название акции на сайте',
-                            priority:'Highest',
+                            priority:'Low',
                             description: 'Название должно отображаться в интерфейсе проверки'
                         },
                         {
                             title: 'Описание действия акции на сайте',
                             priority:'Normal',
+                            description: 'Описание должно отображаться в интерфейсе проверки'
+                        },
+                        {
+                            title: 'Описание действия акции на сайте',
+                            priority:'High',
+                            description: 'Описание должно отображаться в интерфейсе проверки'
+                        },
+                        {
+                            title: 'Описание действия акции на сайте',
+                            priority:'Highest',
+                            description: 'Описание должно отображаться в интерфейсе проверки'
+                        },
+                    ],
+                    
+                },
+                {
+                    title: 'Акции часть 3',
+                    cases: [
+                        {
+                            title: 'Название акции на сайте',
+                            priority:'Highest',
+                            description: 'Название должно отображаться в интерфейсе проверки'
+                        },
+                        {
+                            title: 'Название акции на сайте',
+                            priority:'High',
+                            description: 'Название должно отображаться в интерфейсе проверки'
+                        },
+                        {
+                            title: 'Описание действия акции на сайте',
+                            priority:'Normal',
+                            description: 'Описание должно отображаться в интерфейсе проверки'
+                        },
+                    ],
+                    
+                },
+                {
+                    title: 'Акции часть 4',
+                    cases: [
+                        {
+                            title: 'Название акции на сайте',
+                            priority:'Low',
+                            description: 'Название должно отображаться в интерфейсе проверки'
+                        },
+                        {
+                            title: 'Описание действия акции на сайте',
+                            priority:'Normal',
+                            description: 'Описание должно отображаться в интерфейсе проверки'
+                        },
+                        {
+                            title: 'Описание действия акции на сайте',
+                            priority:'High',
+                            description: 'Описание должно отображаться в интерфейсе проверки'
+                        },
+                        {
+                            title: 'Описание действия акции на сайте',
+                            priority:'Highest',
+                            description: 'Описание должно отображаться в интерфейсе проверки'
+                        },
+                        {
+                            title: 'Название акции на сайте',
+                            priority:'Low',
+                            description: 'Название должно отображаться в интерфейсе проверки'
+                        },
+                        {
+                            title: 'Описание действия акции на сайте',
+                            priority:'Normal',
+                            description: 'Описание должно отображаться в интерфейсе проверки'
+                        },
+                        {
+                            title: 'Описание действия акции на сайте',
+                            priority:'High',
+                            description: 'Описание должно отображаться в интерфейсе проверки'
+                        },
+                        {
+                            title: 'Описание действия акции на сайте',
+                            priority:'Highest',
                             description: 'Описание должно отображаться в интерфейсе проверки'
                         },
                     ],
@@ -102,6 +181,10 @@ export default {
 </script>
 
 <style scoped>
+.bttn{
+    margin: 5vh;
+    
+}
 textarea{
     /* background: transparent; */
     /* border: none; */
@@ -130,6 +213,12 @@ input:focus{
 }
 .input-block{
     width: 50%;
+}
+.nodisp{
+    display: none;
+}
+.disp{
+    display: flex;
 }
 h3{
     margin: 0;

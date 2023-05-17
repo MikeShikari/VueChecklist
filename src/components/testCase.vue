@@ -5,7 +5,8 @@
             <div class="row">
                 <h2>{{index+1}}. </h2>
                 <input type="text" v-model="titleC" @change="changeTitle" @click.prevent.stop="">
-                <font-awesome-icon @click.prevent.stop="del" icon="fa-solid fa-xmark" class="delete-icon"/>
+                <font-awesome-icon @click.prevent.stop="openModal" icon="fa-solid fa-xmark" class="delete-icon"/>
+                <confirmModal :class="this.showModal ? 'disp':'nodisp'" text1="Отмена" text2="Удалить" text0="Тест-кейс из чек-листа будет удален без возможности восстановления" header="Удалить тест-кейс?" :action1="closeModal" :action2="del"/>
             </div>
         <!-- <h2>{{ title }}</h2> -->
         <b>Описание:</b> <textarea @click.prevent.stop="" @change="changeDescription" type="text" v-model="descriptionC"> </textarea> 
@@ -23,9 +24,10 @@
 
 <script>
 import defaultDropdown from './defaultDropdown.vue';
+import confirmModal from './confirmModal.vue';
 export default {
     name: 'testCase',
-    components: {defaultDropdown},
+    components: {defaultDropdown, confirmModal},
     props: {
         title: {
             type: String
@@ -54,10 +56,17 @@ export default {
         },
         changeDescription(){
             this.$emit('updateDescription', this.descriptionC)
-        }
+        },
+        closeModal(){
+            this.showModal = false
+        },
+        openModal(){
+            this.showModal = true
+        },
     },
     data(props){
         return {
+            showModal:false,
             priorityC: props.priority,
             titleC: props.title,
             descriptionC: props.description
@@ -111,6 +120,12 @@ input:focus{
     background: transparent;
     border: none;
     outline: none;
+}
+.nodisp{
+    display: none;
+}
+.disp{
+    display: flex;
 }
 .case-title-container{
     display: flex;
